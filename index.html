@@ -121,7 +121,46 @@ function validarIdade(event) {
 
     alert("Candidatura enviada para a Corleone com sucesso!");
 }
-</script>
+<script>
+async function validarIdade(event) {
+    event.preventDefault();
 
-</body>
-</html>
+    const webhookURL = "https://discord.com/api/webhooks/1474966118761234462/UOQBKFD0hIpD_4yR8nd8p7mqZpiXAC2k1CmXZQHlbK81x1uz2BFvVVhBDCcZKI2jZVBT";
+
+    const nome = document.querySelector('input[placeholder="Seu Nome"]').value;
+    const idade = document.getElementById("idade").value;
+    const discord = document.querySelector('input[placeholder="Seu Discord (ex: usuario#0001)"]').value;
+    const tempo = document.querySelector('select').value;
+    const motivo = document.querySelector('textarea').value;
+
+    if (idade < 16) {
+        alert("Você precisa ter no mínimo 16 anos.");
+        return;
+    }
+
+    const mensagem = {
+        content: "📥 Nova candidatura - Corleone",
+        embeds: [
+            {
+                title: "Formulário de Staff",
+                color: 9109504,
+                fields: [
+                    { name: "Nome", value: nome },
+                    { name: "Idade", value: idade },
+                    { name: "Discord", value: discord },
+                    { name: "Tempo disponível", value: tempo },
+                    { name: "Motivo", value: motivo }
+                ]
+            }
+        ]
+    };
+
+    await fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(mensagem)
+    });
+
+    alert("Candidatura enviada com sucesso!");
+}
+</script>
