@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário de Staff - Corleone</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: #181818;
+    padding: 30px;
+    border-radius: 15px;
+    width: 400px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    border: 1px solid #8b0000;
+}
+
+h1 {
+    text-align: center;
+    color: #8b0000;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+.subtitulo {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.requisitos {
+    background: #111;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    border-left: 3px solid #8b0000;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: #222;
+    color: white;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #8b0000;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #b30000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>CORLEONE</h1>
+    <div class="subtitulo">Formulário Oficial de Staff</div>
+
+    <div class="requisitos">
+        ✔ Idade mínima: 16 anos <br>
+        ✔ Ser comprometido com o servidor <br>
+        ✔ Ter respeito e maturidade <br>
+        ✔ Disponibilidade diária
+    </div>
+
+    <form onsubmit="validarIdade(event)">
+        <input type="text" placeholder="Seu Nome" required>
+        <input type="number" id="idade" placeholder="Sua Idade" required>
+        <input type="text" placeholder="Seu Discord (ex: usuario#0001)" required>
+
+        <select required>
+            <option value="">Tempo disponível por dia</option>
+            <option>1-2 horas</option>
+            <option>3-4 horas</option>
+            <option>5+ horas</option>
+        </select>
+
+        <textarea placeholder="Por que você quer ser Staff da Corleone?" rows="4" required></textarea>
+
+        <button type="submit">Enviar Candidatura</button>
+    </form>
+</div>
+
+<script>
+function validarIdade(event) {
+    event.preventDefault();
+    let idade = document.getElementById("idade").value;
+
+    if (idade < 16) {
+        alert("Você precisa ter no mínimo 16 anos para se candidatar.");
+        return;
+    }
+
+    alert("Candidatura enviada para a Corleone com sucesso!");
+}
+</script>
+
+</body>
+</html>
