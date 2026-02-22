@@ -106,26 +106,28 @@ button:hover {
         <textarea placeholder="Por que você quer ser Staff da Corleone?" rows="4" required></textarea>
 
         <button type="submit">Enviar Candidatura</button>
-    </form>
-</div>
+    <form id="formStaff">
+    <input type="text" placeholder="Seu Nome" required>
+    <input type="number" id="idade" placeholder="Sua Idade" required>
+    <input type="text" placeholder="Seu Discord (ex: usuario#0001)" required>
+
+    <select required>
+        <option value="">Tempo disponível por dia</option>
+        <option>1-2 horas</option>
+        <option>3-4 horas</option>
+        <option>5+ horas</option>
+    </select>
+
+    <textarea placeholder="Por que você quer ser Staff da Corleone?" rows="4" required></textarea>
+
+    <button type="submit">Enviar Candidatura</button>
+</form>
 
 <script>
-function validarIdade(event) {
-    event.preventDefault();
-    let idade = document.getElementById("idade").value;
-
-    if (idade < 16) {
-        alert("Você precisa ter no mínimo 16 anos para se candidatar.");
-        return;
-    }
-
-    alert("Candidatura enviada para a Corleone com sucesso!");
-}
-<script>
-async function validarIdade(event) {
+document.getElementById("formStaff").addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    const webhookURL = "https://discord.com/api/webhooks/1474966118761234462/UOQBKFD0hIpD_4yR8nd8p7mqZpiXAC2k1CmXZQHlbK81x1uz2BFvVVhBDCcZKI2jZVBT";
+    const webhookURL = "https://discord.com/api/webhooks/1474969274492915887/YpKECTGOQ8V5bndssnYXg-1NY7bSBtYOmoyqGZXe-8-SXj-OKF11Bg1SfQxowdNjGn3X";
 
     const nome = document.querySelector('input[placeholder="Seu Nome"]').value;
     const idade = document.getElementById("idade").value;
@@ -140,19 +142,17 @@ async function validarIdade(event) {
 
     const mensagem = {
         content: "📥 Nova candidatura - Corleone",
-        embeds: [
-            {
-                title: "Formulário de Staff",
-                color: 9109504,
-                fields: [
-                    { name: "Nome", value: nome },
-                    { name: "Idade", value: idade },
-                    { name: "Discord", value: discord },
-                    { name: "Tempo disponível", value: tempo },
-                    { name: "Motivo", value: motivo }
-                ]
-            }
-        ]
+        embeds: [{
+            title: "Formulário de Staff",
+            color: 9109504,
+            fields: [
+                { name: "Nome", value: nome },
+                { name: "Idade", value: idade },
+                { name: "Discord", value: discord },
+                { name: "Tempo disponível", value: tempo },
+                { name: "Motivo", value: motivo }
+            ]
+        }]
     };
 
     await fetch(webhookURL, {
@@ -162,5 +162,5 @@ async function validarIdade(event) {
     });
 
     alert("Candidatura enviada com sucesso!");
-}
+});
 </script>
